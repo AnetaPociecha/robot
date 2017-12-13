@@ -12,5 +12,5 @@ public class Antena {
         distance=Math.sqrt(Math.pow(xR-x,2)+Math.pow(yR-y,2));
         double RSS = A-10*n*Math.log(distance);
         return RSS;
-    } //edit sth 
+    } //edit sth ale czad
 }
