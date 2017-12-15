@@ -1,11 +1,18 @@
+import java.util.Random;
+import java.lang.*;
+
 public class World {
 
     private Antena antena1,antena2,antena3;
     private Robot robot;
-    private final int width=400;
-    private final  int height= 400;
+
+    private final int width = 400;
+    private final  int height = 400;
 
     final private int scale = 5;
+
+    final private int gridWidth = width/scale;
+    final private int gridHeight = height/scale;
 
     public World() {
         // trzeba potestować
@@ -19,7 +26,7 @@ public class World {
         int xA3=2;
         int yA3=2;
         */
-
+        /*
         int xR=30;
         int yR=20;
         int xA1=10;
@@ -28,6 +35,56 @@ public class World {
         int yA2=10;
         int xA3=10;
         int yA3=50;
+        */
+
+        int xR;
+        int yR;
+        int xA1;
+        int yA1;
+        int xA2;
+        int yA2;
+        int xA3;
+        int yA3;
+
+        xA1=getRandomizedLocation(gridWidth-1);
+        yA1=getRandomizedLocation(gridHeight-1);
+
+        xA2=getRandomizedLocation(gridWidth-1);
+        while (xA2==xA1 || Math.abs(xA2-xA1)==1){
+            xA2=getRandomizedLocation(gridWidth-1);
+        }
+
+        yA2=getRandomizedLocation(gridHeight-1);
+        while (yA2==yA1 || Math.abs(yA2-yA1)==1){
+            xA2=getRandomizedLocation(gridWidth-1);
+        }
+
+        xA3=getRandomizedLocation(gridWidth-1);
+        while (xA3==xA2 || xA3==xA1 || Math.abs(xA3-xA2)==1 || Math.abs(xA3-xA1)==1){
+            xA3=getRandomizedLocation(gridWidth-1);
+        }
+
+        yA3=getRandomizedLocation(gridHeight-1);
+        while (yA3==yA2 || yA3==yA1 || Math.abs(yA3-yA2)==1 || Math.abs(yA3-yA1)==1){
+            yA3=getRandomizedLocation(gridHeight-1);
+        }
+
+        xR=getRandomizedLocation(gridWidth-1);
+        while (xR==xA1 || xR==xA2 || xR==xA3 || Math.abs(xR-xA1)==1 || Math.abs(xR-xA2)==1 || Math.abs(xR-xA3)==1){
+            xR=getRandomizedLocation(gridWidth-1);
+        }
+
+        yR=getRandomizedLocation(gridHeight-1);
+        while (yR==yA1 || yR==yA2 || yR==yA3 || Math.abs(yR-yA1)==1 || Math.abs(yR-yA2)==1 || Math.abs(yR-yA3)==1){
+            xR=getRandomizedLocation(gridWidth-1);
+        }
+
+        /*
+        System.out.println("Antena1: " + xA1 + ", " + yA1);
+        System.out.println("Antena2: " + xA2 + ", " + yA2);
+        System.out.println("Antena2: " + xA3 + ", " + yA3);
+        System.out.println("Robocik: "+ xR + ", "+yR);
+        */
 
         robot = new Robot(xR,yR);
         antena1=new Antena(xA1,yA1);
@@ -35,6 +92,15 @@ public class World {
         antena3=new Antena(xA3,yA3);
     }
 
+
+    public int getRandomizedLocation(int bound){
+        Random generator = new Random();
+        int location = generator.nextInt(bound);
+        while(location==0){
+            location=generator.nextInt(bound);
+        }
+        return location;
+    }
 
 
     public boolean isRobotInside() {
