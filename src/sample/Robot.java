@@ -1,7 +1,9 @@
+package sample;
+
 public class Robot {
 
-    private int xR;
-    private int yR;
+    int xR;
+    int yR;
 
     public Robot(int xR, int yR) {
         this.xR=xR;

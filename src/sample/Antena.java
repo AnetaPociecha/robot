@@ -1,10 +1,12 @@
+package sample;
+
 import java.lang.*;
 
 public class Antena {
     final private int A = 100;
     final private int n = 1;
-    private int xA;
-    private int yA;
+    final int xA;
+    int yA;
 
     public Antena(int xA, int yA) {
         this.xA=xA;

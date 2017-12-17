@@ -1,18 +1,24 @@
+package sample;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 import java.util.Random;
 import java.lang.*;
 
-public class World {
+public class World{
 
     private Antena antena1,antena2,antena3;
     private Robot robot;
 
-    private final int width = 400;
-    private final  int height = 400;
+    final int width = 400;
+    final  int height = 400;
 
-    final private int scale = 5;
+    final int scale = 5;
 
-    final private int gridWidth = width/scale;
-    final private int gridHeight = height/scale;
+    final int gridWidth = width/scale;
+    final int gridHeight = height/scale;
+
 
     public World() {
         // trzeba potestować
@@ -79,12 +85,12 @@ public class World {
             xR=getRandomizedLocation(gridWidth-1);
         }
 
-        /*
+
         System.out.println("Antena1: " + xA1 + ", " + yA1);
         System.out.println("Antena2: " + xA2 + ", " + yA2);
         System.out.println("Antena2: " + xA3 + ", " + yA3);
         System.out.println("Robocik: "+ xR + ", "+yR);
-        */
+
 
         robot = new Robot(xR,yR);
         antena1=new Antena(xA1,yA1);
@@ -215,10 +221,22 @@ public class World {
         else return false;
     }
 
-    public static void main(String[] args) {
-        World world = new World();
-        boolean check = world.isRobotInside(); //działa lepiej dla współrzędnych>10
-        if(check) System.out.println("inside");
-        else System.out.println("outside");
+
+    void draw(GraphicsContext gc) {
+        gc.setFill(Color.GREEN);
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(1);
+        gc.strokeLine(antena1.xA*scale, antena1.yA*scale, antena2.xA*scale, antena2.yA*scale);
+        gc.strokeLine(antena2.xA*scale, antena2.yA*scale, antena3.xA*scale, antena3.yA*scale);
+        gc.strokeLine(antena3.xA*scale, antena3.yA*scale, antena1.xA*scale, antena1.yA*scale);
+        gc.fillOval(antena1.xA*scale-scale,antena1.yA*scale-scale,2*scale,2*scale);
+        gc.fillOval(antena2.xA*scale-scale,antena2.yA*scale-scale,2*scale,2*scale);
+        gc.fillOval(antena3.xA*scale-scale,antena3.yA*scale-scale,2*scale,2*scale);
+        gc.setFill(Color.RED);
+        gc.fillOval(robot.xR*scale-scale,robot.yR*scale-scale,2*scale,2*scale);
+
     }
+
+
 }
+
