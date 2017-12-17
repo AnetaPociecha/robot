@@ -5,7 +5,7 @@ import java.lang.*;
 public class Antena {
     final private int A = 100;
     final private int n = 1;
-    final int xA;
+    int xA;
     int yA;
 
     public Antena(int xA, int yA) {
