@@ -38,7 +38,7 @@ public class World{
 
         yA2=getRandomizedLocation(gridHeight-margin);
         while (yA2==yA1 || Math.abs(yA2-yA1)==margin){
-            xA2=getRandomizedLocation(gridWidth-margin);
+            yA2=getRandomizedLocation(gridWidth-margin);
         }
 
         xA3=getRandomizedLocation(gridWidth-margin);
@@ -58,7 +58,7 @@ public class World{
 
         yR=getRandomizedLocation(gridHeight-margin);
         while (yR==yA1 || yR==yA2 || yR==yA3 || Math.abs(yR-yA1)==margin || Math.abs(yR-yA2)==margin || Math.abs(yR-yA3)==margin){
-            xR=getRandomizedLocation(gridWidth-margin);
+            yR=getRandomizedLocation(gridWidth-margin);
         }
 */
         int xR=30;
