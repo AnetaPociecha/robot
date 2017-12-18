@@ -318,8 +318,6 @@ public class Robot {
             int[] A1 = findSourceCoordinate(antena1);
             int[] A2 = findSourceCoordinate(antena2);
             int[] A3 = findSourceCoordinate(antena3);
-
-            if(checkTop(A1) || checkTop(A2) || checkTop(A3)) return true;
             boolean finalCheck = finalInCheck(A1,A2,A3);
             return finalCheck;
         }
