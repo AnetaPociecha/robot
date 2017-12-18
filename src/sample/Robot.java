@@ -111,8 +111,8 @@ public class Robot {
             if(a1==a2) throw new CrossLineException();
             else throw new NoCrossLineException();
         }
-        if(a1==a2&&b1==b2) throw new NoCrossLineException();
-        if(a1==a2) throw new CrossLineException();
+        if(a1==a2&&b1==b2) throw new CrossLineException();
+        if(a1==a2) throw new NoCrossLineException();
         if(b1==b2) {
             double[] line = {0,b1};
             return line;
