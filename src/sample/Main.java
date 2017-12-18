@@ -1,13 +1,13 @@
 package sample;
 
-
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-
 
 public class Main extends Application {
     static World world = new World();
@@ -15,34 +15,23 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("World");
-
         Group root = new Group();
+        Label label;
         Canvas canvas = new Canvas(world.width, world.height);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
         world.draw(gc);
 
+        if(world.isRobotInside()){
+            label = new Label("Robot is inside!");
+        }else{
+            label = new Label("Robot is outside!");
+        }
+        label.setFont(Font.font("Cambria", 22));
+        root.getChildren().add(label);
         root.getChildren().add(canvas);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
-        String screenText="";
-        if(world.isRobotInside()){
-            screenText = "Robot is inside";
-        }else{
-            screenText = "Robot is outside";
-        }
-        gc.strokeText(screenText,30,30,300);
     }
 
-    public static void main(String[] args) {
-
-        boolean check = world.isRobotInside(); //działa lepiej dla współrzędnych>10
-        if(check) System.out.println("inside");
-        else System.out.println("outside");
-
-        launch(args);
-
-    }
-
+    public static void main(String[] args) { launch(args); }
 }
