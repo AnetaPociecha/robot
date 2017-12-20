@@ -17,7 +17,7 @@ public class World{
     final int gridHeight = height/scale;
 
     public World() {
-/*
+
         int xR;
         int yR;
         int xA1;
@@ -60,7 +60,7 @@ public class World{
         while (yR==yA1 || yR==yA2 || yR==yA3 || Math.abs(yR-yA1)==margin || Math.abs(yR-yA2)==margin || Math.abs(yR-yA3)==margin){
             yR=getRandomizedLocation(gridWidth-margin);
         }
-*/
+/*
         int xR=30;
         int yR=30;
         int xA1=50;
@@ -69,7 +69,7 @@ public class World{
         int yA2=35;
         int xA3=1;
         int yA3=20;
-
+*/
         System.out.println("Antena1: " + xA1 + ", " + yA1);
         System.out.println("Antena2: " + xA2 + ", " + yA2);
         System.out.println("Antena2: " + xA3 + ", " + yA3);
@@ -81,6 +81,12 @@ public class World{
         antena3=new Antena(xA3,yA3);
     }
 
+    Antena getA1(){return antena1;}
+    Antena getA2(){return antena2;}
+    Antena getA3(){return antena3;}
+
+    Robot getRobot(){return robot;}
+
     public int getRandomizedLocation(int bound){
         Random generator = new Random();
         int location = generator.nextInt(bound);
@@ -91,21 +97,7 @@ public class World{
     }
 
     public boolean isRobotInside() {
-        boolean check = robot.inside(antena1,antena2,antena3);
-        return check;
+        return  robot.inside(antena1,antena2,antena3);
     }
 
-    void draw(GraphicsContext gc) {
-        gc.setFill(Color.GREEN);
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(1);
-        gc.strokeLine(antena1.getX()*scale, antena1.getY()*scale, antena2.getX()*scale, antena2.getY()*scale);
-        gc.strokeLine(antena2.getX()*scale, antena2.getY()*scale, antena3.getX()*scale, antena3.getY()*scale);
-        gc.strokeLine(antena3.getX()*scale, antena3.getY()*scale, antena1.getX()*scale, antena1.getY()*scale);
-        gc.fillOval(antena1.getX()*scale-scale,antena1.getY()*scale-scale,2*scale,2*scale);
-        gc.fillOval(antena2.getX()*scale-scale,antena2.getY()*scale-scale,2*scale,2*scale);
-        gc.fillOval(antena3.getX()*scale-scale,antena3.getY()*scale-scale,2*scale,2*scale);
-        gc.setFill(Color.RED);
-        gc.fillOval(robot.getX()*scale-scale,robot.getY()*scale-scale,2*scale,2*scale);
-    }
 }

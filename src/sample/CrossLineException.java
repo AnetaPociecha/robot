@@ -1,3 +1,3 @@
 package sample;
 
-public class CrossLineException extends Exception {}
+class CrossLineException extends Exception {}
