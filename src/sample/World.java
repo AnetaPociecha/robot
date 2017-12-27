@@ -1,8 +1,5 @@
 package sample;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-
 import java.util.Random;
 import java.lang.*;
 
@@ -10,13 +7,14 @@ class World{
 
     private Antena antena1,antena2,antena3;
     private Robot robot;
+
     private final int width = 400;
     private final  int height = 400;
+
     final int scale = 5;
-    private final int minDistance = 2*scale;
+
     private final int gridWidth = width/scale;
     private final int gridHeight = height/scale;
-    //radius = scale
 
     World() {
 
@@ -29,7 +27,7 @@ class World{
         int xA3;
         int yA3;
 
-        //teraz dopuszcza możliwość że x1=x2, powtarza losowanie jeśli wylosowane punkty są takie same lub się stykają - odległość będzie conajmniej 5px + przy
+        //dopuszcza możliwość że x1=x2, powtarza losowanie jeśli wylosowane punkty są takie same lub się częściowo pokrywają, mogą się stykać
         //losowaniu trzeciej anteny sprawdza czy nie jest ona współliniowa z resztą anten -> zawsze będziemy mieć trojkata
 
         xA1=getRandomizedLocation(gridWidth);
@@ -60,35 +58,6 @@ class World{
             yR=getRandomizedLocation(gridHeight);
         }
 
-        /*xA2=getRandomizedLocation(gridWidth);
-        while (xA2==xA1 || Math.abs(xA2-xA1)==minDistance){
-            xA2=getRandomizedLocation(gridWidth);
-        }
-
-        yA2=getRandomizedLocation(gridHeight);
-        while (yA2==yA1 || Math.abs(yA2-yA1)==minDistance){
-            yA2=getRandomizedLocation(gridWidth);
-        }
-
-        xA3=getRandomizedLocation(gridWidth);
-        while (xA3==xA2 || xA3==xA1 || Math.abs(xA3-xA2)==minDistance || Math.abs(xA3-xA1)==minDistance){
-            xA3=getRandomizedLocation(gridWidth);
-        }
-
-        yA3=getRandomizedLocation(gridHeight);
-        while (yA3==yA2 || yA3==yA1 || Math.abs(yA3-yA2)==minDistance || Math.abs(yA3-yA1)==minDistance){
-            yA3=getRandomizedLocation(gridHeight);
-        }
-
-        xR=getRandomizedLocation(gridWidth);
-        while (xR==xA1 || xR==xA2 || xR==xA3 || Math.abs(xR-xA1)==minDistance || Math.abs(xR-xA2)==minDistance || Math.abs(xR-xA3)==minDistance){
-            xR=getRandomizedLocation(gridWidth);
-        }
-
-        yR=getRandomizedLocation(gridHeight);
-        while (yR==yA1 || yR==yA2 || yR==yA3 || Math.abs(yR-yA1)==minDistance || Math.abs(yR-yA2)==minDistance || Math.abs(yR-yA3)==minDistance){
-            yR=getRandomizedLocation(gridWidth);
-        }*/
 /*
         int xR=30;
         int yR=30;
