@@ -1,21 +1,21 @@
 package sample;
 
-public class Robot {
+class Robot {
     private int xR;
     private int yR;
-    public Robot(int xR, int yR) {
+    Robot(int xR, int yR) {
         this.xR=xR;
         this.yR=yR;
     }
 
-    public int getX() {return xR;}
-    public int getY() {return yR;}
+    int getX() {return xR;}
+    int getY() {return yR;}
 
     private double readSignal(Antena antena){
         return antena.getSignal(xR,yR);
     }
 
-    public int[] findSourceCoordinate(Antena antena) {
+    private int[] findSourceCoordinate(Antena antena) {
         int coordX=0,coordY=0;
         int originalXR=xR;
         int originalYR=yR;
@@ -79,7 +79,7 @@ public class Robot {
         return coordArray;
     }
 
-    public double[] findLine(int x1, int y1, int x2, int y2) {
+    private double[] findLine(int x1, int y1, int x2, int y2) {
         if(x2==x1) {
             double[] line = {1,-x1,0};
             return line;
@@ -114,8 +114,8 @@ public class Robot {
         if(a1==a2&&b1==b2) throw new CrossLineException();
         if(a1==a2) throw new NoCrossLineException();
         if(b1==b2) {
-            double[] line = {0,b1};
-            return line;
+            double[] point = {0,b1};
+            return point;
         }
         double x = (b2-b1)/(a1-a2);
         double y = a2*x+b2;
@@ -123,7 +123,7 @@ public class Robot {
         return point;
     }
 
-    private boolean finalInCheck(int[] A1, int[] A2, int[] A3) {
+    private boolean finalInCheck(int[] A1, int[] A2, int[] A3) {//crosslineexc-te same proste, nocrosslineexc-rownolegle
         int xA1 = A1[0];
         int yA1 = A1[1];
         int xA2 = A2[0];
@@ -188,7 +188,7 @@ public class Robot {
         yC = crossPointA2A3R[1];
         boolean checkX3=false,checkY3=false;
         if(xA3<=xA2) {
-            if(xC>=xA3&&xC<=xA2) checkX3=true;
+            if(xC>=xA3&&xC<=xA2) checkX3=true; //kiedy rowne-> robot jest na linii, traktujemy jako w srodku?
         }else {
             if(xC>=xA2&&xC<=xA3) checkX3=true;
         }
@@ -197,16 +197,10 @@ public class Robot {
         }else {
             if(yC>=yA2&&yC<=yA3) checkY3=true;
         }
-        if(!(checkX3&&checkY3))return false;
-        return true;
+        return (checkX3&&checkY3);
     }
 
-    public boolean checkTop(int[] A) {
-        if(A[0]==0 && A[1]==0) return true;
-        else return false;
-    }
-
-    public boolean inside(Antena antena1, Antena antena2, Antena antena3) {
+    boolean inside(Antena antena1, Antena antena2, Antena antena3) {
 
         double signal0Antena1, signalRightAntena1, signalLeftAntena1, signalForwardAntena1, signalBackAntena1;
         double signal0Antena2, signalRightAntena2, signalLeftAntena2, signalForwardAntena2, signalBackAntena2;
@@ -314,12 +308,11 @@ public class Robot {
 
         // final check
         int sum = checkRight+checkLeft+checkForward+checkBack;
-        if(sum==4) {
+        if(sum==4 || sum==3) {
             int[] A1 = findSourceCoordinate(antena1);
             int[] A2 = findSourceCoordinate(antena2);
             int[] A3 = findSourceCoordinate(antena3);
-            boolean finalCheck = finalInCheck(A1,A2,A3);
-            return finalCheck;
+            return finalInCheck(A1,A2,A3);
         }
         else return false;
     }
