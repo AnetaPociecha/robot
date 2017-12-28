@@ -123,85 +123,7 @@ class Robot {
         return point;
     }
 
-    private boolean finalInCheck(int[] A1, int[] A2, int[] A3) {//crosslineexc-te same proste, nocrosslineexc-rownolegle
-        int xA1 = A1[0];
-        int yA1 = A1[1];
-        int xA2 = A2[0];
-        int yA2 = A2[1];
-        int xA3 = A3[0];
-        int yA3 = A3[1];
-        int xR_=0;
-        int yR_=0;
-
-        // A1 A2
-        double[] A1A2 = findLine(xA1,yA1,xA2,yA2);
-        double[] A3R = findLine(xA3,yA3,xR_,yR_);
-        double[] crossPointA1A2R;
-        try {crossPointA1A2R = findCrossPoint(A1A2, A3R);
-        }catch(NoCrossLineException e) {return false;}
-        catch (CrossLineException e){return true;}
-        double xC = crossPointA1A2R[0];
-        double yC = crossPointA1A2R[1];
-        boolean checkX1=false,checkY1=false;
-        if(xA1<=xA2) {
-            if(xC>=xA1&&xC<=xA2) checkX1=true;
-        }else {
-            if(xC>=xA2&&xC<=xA1) checkX1=true;
-        }
-        if(yA1<=yA2) {
-            if(yC>=yA1&&yC<=yA2) checkY1=true;
-        }else {
-            if(yC>=yA2&&yC<=yA1) checkY1=true;
-        }
-        if(!(checkX1&&checkY1)) return false;
-
-        // A1 A3
-        double[] A1A3 = findLine(xA1,yA1,xA3,yA3);
-        double[] A2R = findLine(xA2,yA2,xR_,yR_);
-        double[] crossPointA1A3R;
-        try {crossPointA1A3R = findCrossPoint(A1A3,A2R);
-        }catch(NoCrossLineException e) {return false;}
-        catch (CrossLineException e){return true;}
-        xC = crossPointA1A3R[0];
-        yC = crossPointA1A3R[1];
-        boolean checkX2=false,checkY2=false;
-        if(xA1<=xA3) {
-            if(xC>=xA1&&xC<=xA3) checkX2=true;
-        }else {
-            if(xC>=xA3&&xC<=xA1) checkX2=true;
-        }
-        if(yA1<=yA3) {
-            if(yC>=yA1&&yC<=yA3) checkY2=true;
-        }else {
-            if(yC>=yA3&&yC<=yA1) checkY2=true;
-        }
-        if(!(checkX2&&checkY2)) return false;
-
-        // A2 A3
-        double[] A2A3 = findLine(xA2,yA2,xA3,yA3);
-        double[] A1R = findLine(xA1,yA1,xR_,yR_);
-        double[] crossPointA2A3R;
-        try {crossPointA2A3R = findCrossPoint(A2A3,A1R);
-        }catch(NoCrossLineException e) {return false;}
-        catch (CrossLineException e){return true;}
-        xC = crossPointA2A3R[0];
-        yC = crossPointA2A3R[1];
-        boolean checkX3=false,checkY3=false;
-        if(xA3<=xA2) {
-            if(xC>=xA3&&xC<=xA2) checkX3=true; //kiedy rowne-> robot jest na linii, traktujemy jako w srodku?
-        }else {
-            if(xC>=xA2&&xC<=xA3) checkX3=true;
-        }
-        if(yA3<=yA2) {
-            if(yC>=yA3&&yC<=yA2) checkY3=true;
-        }else {
-            if(yC>=yA2&&yC<=yA3) checkY3=true;
-        }
-        return (checkX3&&checkY3);
-    }
-
-    boolean inside(Antena antena1, Antena antena2, Antena antena3) {
-
+    private boolean firstInCheck(Antena antena1, Antena antena2, Antena antena3) {
         double signal0Antena1, signalRightAntena1, signalLeftAntena1, signalForwardAntena1, signalBackAntena1;
         double signal0Antena2, signalRightAntena2, signalLeftAntena2, signalForwardAntena2, signalBackAntena2;
         double signal0Antena3, signalRightAntena3, signalLeftAntena3, signalForwardAntena3, signalBackAntena3;
@@ -308,7 +230,90 @@ class Robot {
 
         // final check
         int sum = checkRight+checkLeft+checkForward+checkBack;
-        if(sum==4 || sum==3) {
+        if(sum==4 || sum==3) return true;
+        else return false;
+    }
+
+    private boolean finalInCheck(int[] A1, int[] A2, int[] A3) {//crosslineexc-te same proste, nocrosslineexc-rownolegle
+        int xA1 = A1[0];
+        int yA1 = A1[1];
+        int xA2 = A2[0];
+        int yA2 = A2[1];
+        int xA3 = A3[0];
+        int yA3 = A3[1];
+        int xR_=0;
+        int yR_=0;
+
+        // A1 A2
+        double[] A1A2 = findLine(xA1,yA1,xA2,yA2);
+        double[] A3R = findLine(xA3,yA3,xR_,yR_);
+        double[] crossPointA1A2R;
+        try {crossPointA1A2R = findCrossPoint(A1A2, A3R);
+        }catch(NoCrossLineException e) {return false;}
+        catch (CrossLineException e){return true;}
+        double xC = crossPointA1A2R[0];
+        double yC = crossPointA1A2R[1];
+        boolean checkX1=false,checkY1=false;
+        if(xA1<=xA2) {
+            if(xC>=xA1&&xC<=xA2) checkX1=true;
+        }else {
+            if(xC>=xA2&&xC<=xA1) checkX1=true;
+        }
+        if(yA1<=yA2) {
+            if(yC>=yA1&&yC<=yA2) checkY1=true;
+        }else {
+            if(yC>=yA2&&yC<=yA1) checkY1=true;
+        }
+        if(!(checkX1&&checkY1)) return false;
+
+        // A1 A3
+        double[] A1A3 = findLine(xA1,yA1,xA3,yA3);
+        double[] A2R = findLine(xA2,yA2,xR_,yR_);
+        double[] crossPointA1A3R;
+        try {crossPointA1A3R = findCrossPoint(A1A3,A2R);
+        }catch(NoCrossLineException e) {return false;}
+        catch (CrossLineException e){return true;}
+        xC = crossPointA1A3R[0];
+        yC = crossPointA1A3R[1];
+        boolean checkX2=false,checkY2=false;
+        if(xA1<=xA3) {
+            if(xC>=xA1&&xC<=xA3) checkX2=true;
+        }else {
+            if(xC>=xA3&&xC<=xA1) checkX2=true;
+        }
+        if(yA1<=yA3) {
+            if(yC>=yA1&&yC<=yA3) checkY2=true;
+        }else {
+            if(yC>=yA3&&yC<=yA1) checkY2=true;
+        }
+        if(!(checkX2&&checkY2)) return false;
+
+        // A2 A3
+        double[] A2A3 = findLine(xA2,yA2,xA3,yA3);
+        double[] A1R = findLine(xA1,yA1,xR_,yR_);
+        double[] crossPointA2A3R;
+        try {crossPointA2A3R = findCrossPoint(A2A3,A1R);
+        }catch(NoCrossLineException e) {return false;}
+        catch (CrossLineException e){return true;}
+        xC = crossPointA2A3R[0];
+        yC = crossPointA2A3R[1];
+        boolean checkX3=false,checkY3=false;
+        if(xA3<=xA2) {
+            if(xC>=xA3&&xC<=xA2) checkX3=true; //kiedy rowne-> robot jest na linii, traktujemy jako w srodku?
+        }else {
+            if(xC>=xA2&&xC<=xA3) checkX3=true;
+        }
+        if(yA3<=yA2) {
+            if(yC>=yA3&&yC<=yA2) checkY3=true;
+        }else {
+            if(yC>=yA2&&yC<=yA3) checkY3=true;
+        }
+        return (checkX3&&checkY3);
+    }
+
+    boolean inside(Antena antena1, Antena antena2, Antena antena3) {
+
+        if(firstInCheck(antena1,antena2,antena3)) {
             int[] A1 = findSourceCoordinate(antena1);
             int[] A2 = findSourceCoordinate(antena2);
             int[] A3 = findSourceCoordinate(antena3);
@@ -316,5 +321,4 @@ class Robot {
         }
         else return false;
     }
-
 }
