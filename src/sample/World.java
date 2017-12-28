@@ -96,7 +96,7 @@ class World{
     private boolean isCollinear(int x1, int y1, int x2, int y2, int x3, int y3){
         double a = (double)(y1-y2)/(double)(x1-x2);
         double b = (double)y1 - (double)x1*a;
-        return y3==a*(double)x3+b;
+        return y3>a*(double)x3+b-scale && y3<a*(double)x3+b+scale;
     }
 
 
