@@ -17,8 +17,6 @@ class Robot {
 
     private int[] findSourceCoordinate(Antena antena) {
         int coordX=0,coordY=0;
-        int originalXR=xR;
-        int originalYR=yR;
         double signal1 = antena.getSignal(xR,yR);
         double signal2;
         xR--;
@@ -74,8 +72,8 @@ class Robot {
             coordY--;
         }
         int[] coordArray = {coordX,coordY};
-        xR=originalXR;
-        yR=originalYR;
+        xR=xR-coordX;
+        yR=yR-coordY;
         return coordArray;
     }
 
