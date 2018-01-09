@@ -57,21 +57,7 @@ class World{
             xR=getRandomizedLocation(gridWidth);
             yR=getRandomizedLocation(gridHeight);
         }
-
-/*
-        int xR=30;
-        int yR=30;
-        int xA1=50;
-        int yA1=10;
-        int xA2=50;
-        int yA2=35;
-        int xA3=1;
-        int yA3=20;
-*/
-        System.out.println("Antena1: " + xA1 + ", " + yA1);
-        System.out.println("Antena2: " + xA2 + ", " + yA2);
-        System.out.println("Antena2: " + xA3 + ", " + yA3);
-        System.out.println("Robocik: "+ xR + ", "+yR);
+        
 
         robot = new Robot(xR,yR);
         antena1=new Antena(xA1,yA1);
