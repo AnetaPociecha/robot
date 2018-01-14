@@ -91,7 +91,7 @@ class World{
      * @param y1 druga wspolrzedna pierwszego punktu
      * @param x2 pierwsza wspolrzedna drugiego punktu
      * @param y2 druga wspolrzedna drugiego punktu
-     * @return Funkcja zwraca wartosc logiczna sprawdzenia czy punkty są tymi samymi punktami.
+     * @return Funkcja zwraca wartosc logiczna sprawdzenia czy punkty sa tymi samymi punktami.
      */
 
     private boolean isSame(int x1, int y1, int x2, int y2){
@@ -106,7 +106,7 @@ class World{
      * @param y2 druga wspolrzedna drugiego punktu
      * @param x3 pierwsza wspolrzedna trzeciego punktu
      * @param y3 druga wspolrzedna trzeciego punktu
-     * @return Funkcja zwraca wartosc logiczna sprawdzenia czy punkty są wspolliniowe.
+     * @return Funkcja zwraca wartosc logiczna sprawdzenia czy punkty sa wspolliniowe.
      */
 
     private boolean isCollinear(int x1, int y1, int x2, int y2, int x3, int y3){
