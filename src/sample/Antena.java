@@ -15,6 +15,13 @@ class Antena {
         this.yA=yA;
     }
 
+    /**
+     *
+     * @param xR pierwsza współrzędna badanego punktu
+     * @param yR druga współrzędna badanego punktu
+     * @return wartość sygnału w badanym punkcie
+     */
+
     double getSignal(int xR,int yR){
         double distance;
         distance=Math.sqrt(Math.pow(xR-xA,2)+Math.pow(yR-yA,2));

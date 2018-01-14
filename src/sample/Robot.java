@@ -15,6 +15,11 @@ class Robot {
         return antena.getSignal(xR,yR);
     }
 
+    /**
+     *
+     * @param antena antena dla której szukamy względnych współrzędnych (wzgledem położenia robota)
+     * @return tablica [coordX,coordY] gdzie coordX,coordY - względne współrzędne anteny
+     */
     private int[] findSourceCoordinate(Antena antena) {
         int coordX=0,coordY=0;
         double signal1 = antena.getSignal(xR,yR);
@@ -77,6 +82,14 @@ class Robot {
         return coordArray;
     }
 
+    /**
+     * 
+     * @param x1 pierwsza współrzędna pierwszego punktu
+     * @param y1 druga współrzędna pierwszego punktu
+     * @param x2 pierwsza współrzędna drugiego punktu
+     * @param y2 druga współrzędna drugiego punktu
+     * @return tablica przedstawiająca prostą przechodzącą przez punkty o współrzędnych (x1,y1) i (x2,y2), dla prostej w postaci cy=ax+b tablica to [a,b,c]
+     */
     private double[] findLine(int x1, int y1, int x2, int y2) {
         if(x2==x1) {
             double[] line = {1,-x1,0};
@@ -87,6 +100,15 @@ class Robot {
         double[] line = {a,b,1}; //współczynniki a,b i wspł. przy y
         return line;
     }
+
+    /**
+     *
+     * @param line1 tablica zawierająca informacje o prostej w formacie [a,b,c] dla prostej cy=ax+b
+     * @param line2 jw.
+     * @return tablica [x,y] gdzie x,y - punkt przecięcia prostych line1 i line2
+     * @throws NoCrossLineException wyjątek wyrzucany w przypadku prostych równoległych - brak punktu przecięcia
+     * @throws CrossLineException wyjątek wyrzucany w przypadku gdy line1 i line2 są tymi samymi prostymi - nieskończenie wiele punktów przecięcia
+     */
 
     private double[] findCrossPoint(double[] line1, double[] line2) throws NoCrossLineException, CrossLineException {
 
@@ -120,6 +142,14 @@ class Robot {
         double[] point = {x,y};
         return point;
     }
+
+    /**
+     *
+     * @param antena1 antena dla której przeprowadzane jest początkowe sprawdzenie (sprawdzenie czy przy ruchu robota w prawo, lewo, górę i dół sygnały maleją czy rosną)
+     * @param antena2 jw.
+     * @param antena3 jw.
+     * @return wynik logiczny początkowego sprawdzenia
+     */
 
     private boolean firstInCheck(Antena antena1, Antena antena2, Antena antena3) {
         double signal0Antena1, signalRightAntena1, signalLeftAntena1, signalForwardAntena1, signalBackAntena1;
@@ -232,6 +262,16 @@ class Robot {
         else return false;
     }
 
+    /**
+     *
+     * @param A1 dwuelementowa tablica ze współrzędnymi [x,y]
+     * @param A2 jw.
+     * @param A3 jw.
+     * @return wynik logiczny sprawdzenia czy współrzędne robota znajdują się wewnątrz punktów wyznaczonych przez A1,A2 i A3, sprawdzenie polega na
+     * utworzeniu prostych A1A2 oraz A3R i zbadaniu czy punkt ich przecięcia istnieje oraz czy znajduje się na boku trójkąta, badanie warunku jest powtórzone
+     * dla prostych A1A3 i A2R oraz A2A3 i A1R, jeśli wszystkie trzy warunki są spełnione oznacza to, że robot znajduje się w trójkącie wyznaczonym przez anteny i funkcja zwraca true.
+     */
+
     private boolean finalInCheck(int[] A1, int[] A2, int[] A3) {//crosslineexc-te same proste, nocrosslineexc-rownolegle
         int xA1 = A1[0];
         int yA1 = A1[1];
@@ -309,6 +349,15 @@ class Robot {
         return (checkX3&&checkY3);
     }
 
+
+    /**
+     *
+     * @param antena1 antena dla której będzie przeprowadzone finalne sprawdzenie
+     * @param antena2 jw.
+     * @param antena3 jw.
+     * @return wynik logiczny finalnego sprawdzenia, w pierwszym kroku wykonywane jest sprawdzenie początkowe, jeśli ono nie określi jednoznacznie czy robot jest w środku
+     * przeprowadzone jest sprawdzenie funkcją finalInCheck()
+     */
     boolean inside(Antena antena1, Antena antena2, Antena antena3) {
 
         if(firstInCheck(antena1,antena2,antena3)) {

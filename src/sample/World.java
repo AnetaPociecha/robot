@@ -57,7 +57,7 @@ class World{
             xR=getRandomizedLocation(gridWidth);
             yR=getRandomizedLocation(gridHeight);
         }
-        
+
 
         robot = new Robot(xR,yR);
         antena1=new Antena(xA1,yA1);
@@ -71,13 +71,42 @@ class World{
 
     Robot getRobot(){return robot;}
 
+
+    /**
+     *
+     * @param x1 pierwsza współrzędna pierwszego punktu
+     * @param y1 druga współrzędna pierwszego punktu
+     * @param x2 pierwsza współrzędna drugiego punktu
+     * @param y2 druga współrzędna drugiego punktu
+     * @return odległość pomiędzy punktami (x1,y1) i (x2,y2)
+     */
     private boolean checkDistance(int x1, int y1, int x2, int y2){
         return (Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2))<=2);
     }
 
+    /**
+     *
+     * @param x1 pierwsza współrzędna pierwszego punktu
+     * @param y1 druga współrzędna pierwszego punktu
+     * @param x2 pierwsza współrzędna drugiego punktu
+     * @param y2 druga współrzędna drugiego punktu
+     * @return wartość logiczna sprawdzenia czy punkty są tymi samymi punktami
+     */
+
     private boolean isSame(int x1, int y1, int x2, int y2){
         return (x1==x2 && y1==y2);
     }
+
+    /**
+     *
+     * @param x1 pierwsza współrzędna pierwszego punktu
+     * @param y1 druga współrzędna pierwszego punktu
+     * @param x2 pierwsza współrzędna drugiego punktu
+     * @param y2 druga współrzędna drugiego punktu
+     * @param x3 pierwsza współrzędna trzeciego punktu
+     * @param y3 druga współrzędna trzeciego punktu
+     * @return wartość logiczna sprawdzenia czy punkty są współliniowe
+     */
 
     private boolean isCollinear(int x1, int y1, int x2, int y2, int x3, int y3){
         double a = (double)(y1-y2)/(double)(x1-x2);
@@ -85,6 +114,11 @@ class World{
         return y3>a*(double)x3+b-scale && y3<a*(double)x3+b+scale;
     }
 
+    /**
+     *
+     * @param bound koniec przedziału otwartego z którego ma być losowana liczba
+     * @return losowa liczba całkowita z przedziału (0,bound)
+     */
 
     private int getRandomizedLocation(int bound){
         final int margin = 1;
