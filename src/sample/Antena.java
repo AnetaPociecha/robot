@@ -19,7 +19,7 @@ class Antena {
      *
      * @param xR pierwsza wspolrzedna badanego punktu
      * @param yR druga wspolrzedna badanego punktu
-     * @return wartosc sygnału w badanym punkcie
+     * @return Funkcja zwraca wartosc sygnalu w badanym punkcie.
      */
 
     double getSignal(int xR,int yR){

@@ -79,7 +79,7 @@ class World{
      * @param y1 druga wspolrzedna pierwszego punktu
      * @param x2 pierwsza wspolrzedna drugiego punktu
      * @param y2 druga wspolrzedna drugiego punktu
-     * @return odleglosc pomiedzy punktami (x1,y1) i (x2,y2)
+     * @return Funkcja zwraca odleglosc pomiedzy punktami (x1,y1) i (x2,y2).
      */
     private boolean checkDistance(int x1, int y1, int x2, int y2){
         return (Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2))<=2);
@@ -91,7 +91,7 @@ class World{
      * @param y1 druga wspolrzedna pierwszego punktu
      * @param x2 pierwsza wspolrzedna drugiego punktu
      * @param y2 druga wspolrzedna drugiego punktu
-     * @return wartosc logiczna sprawdzenia czy punkty są tymi samymi punktami
+     * @return Funkcja zwraca wartosc logiczna sprawdzenia czy punkty są tymi samymi punktami.
      */
 
     private boolean isSame(int x1, int y1, int x2, int y2){
@@ -106,7 +106,7 @@ class World{
      * @param y2 druga wspolrzedna drugiego punktu
      * @param x3 pierwsza wspolrzedna trzeciego punktu
      * @param y3 druga wspolrzedna trzeciego punktu
-     * @return wartosc logiczna sprawdzenia czy punkty są wspolliniowe
+     * @return Funkcja zwraca wartosc logiczna sprawdzenia czy punkty są wspolliniowe.
      */
 
     private boolean isCollinear(int x1, int y1, int x2, int y2, int x3, int y3){
@@ -118,7 +118,7 @@ class World{
     /**
      *
      * @param bound koniec przedzialu otwartego z ktorego ma byc losowana liczba
-     * @return losowa liczba całkowita z przedzialu (0,bound)
+     * @return Funkcja zwraca losowa liczbe całkowita z przedzialu (0,bound).
      */
 
     private int getRandomizedLocation(int bound){

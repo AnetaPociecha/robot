@@ -21,7 +21,7 @@ class Robot {
     /**
      *
      * @param antena antena dla ktorej szukamy wzglednych wspolrzednych (wzgledem polozenia robota)
-     * @return tablica [coordX,coordY] gdzie coordX,coordY - wzgledne wspolrzedne anteny
+     * @return Funkcja zwraca tablice [coordX,coordY] gdzie coordX,coordY - wzgledne wspolrzedne anteny.
      */
     private int[] findSourceCoordinate(Antena antena) {
         int coordX=0,coordY=0;
@@ -91,7 +91,7 @@ class Robot {
      * @param y1 druga wspolrzedna pierwszego punktu
      * @param x2 pierwsza wspolrzedna drugiego punktu
      * @param y2 druga wspolrzedna drugiego punktu
-     * @return tablica przedstawiajaca prosta przechodzaca przez punkty o wspolrzednych (x1,y1) i (x2,y2), dla prostej w postaci cy=ax+b tablica to [a,b,c]
+     * @return Funkcja zwraca tablice przedstawiajaca prosta przechodzaca przez punkty o wspolrzednych (x1,y1) i (x2,y2), dla prostej w postaci cy=ax+b tablica to [a,b,c].
      */
     private double[] findLine(int x1, int y1, int x2, int y2) {
         if(x2==x1) {
@@ -108,7 +108,7 @@ class Robot {
      *
      * @param line1 tablica zawierajaca informacje o prostej w formacie [a,b,c] dla prostej cy=ax+b
      * @param line2 jw.
-     * @return tablica [x,y] gdzie x,y - punkt przeciecia prostych line1 i line2
+     * @return Funkcja zwraca tablice [x,y] gdzie x,y - punkt przeciecia prostych line1 i line2.
      * @throws NoCrossLineException wyjatek wyrzucany w przypadku prostych rownoleglych - brak punktu przeciecia
      * @throws CrossLineException wyjatek wyrzucany w przypadku gdy line1 i line2 sa tymi samymi prostymi - nieskonczenie wiele punktow przeciecia
      */
@@ -152,7 +152,7 @@ class Robot {
      *                dwa sygnaly wzrosly i jeden zmalal lub dwa sygnaly zmalally i jeden wzrosl)
      * @param antena2 jw.
      * @param antena3 jw.
-     * @return wynik logiczny poczatkowego sprawdzenia - jezeli warunek jest spelniony conajmniej dla trzech kierunkow wynik dzialania wstepnego sprawdzenia mozna uznac za wiarygodny
+     * @return Funkcja zwraca wynik logiczny poczatkowego sprawdzenia - jezeli warunek jest spelniony conajmniej dla trzech kierunkow wynik dzialania wstepnego sprawdzenia mozna uznac za wiarygodny.
      */
 
     private boolean firstInCheck(Antena antena1, Antena antena2, Antena antena3) {
@@ -271,9 +271,9 @@ class Robot {
      * @param A1 dwuelementowa tablica ze wspolrzednymi [x,y]
      * @param A2 jw.
      * @param A3 jw.
-     * @return wynik logiczny sprawdzenia czy wspolrzedne robota znajduja sie wewnatrz punktow wyznaczonych przez A1,A2 i A3, sprawdzenie polega na
+     * @return Funkcja zwraca wynik logiczny sprawdzenia czy wspolrzedne robota znajduja sie wewnatrz punktow wyznaczonych przez A1,A2 i A3, sprawdzenie polega na
      * utworzeniu prostych A1A2 oraz A3R i zbadaniu czy punkt ich przecięcia istnieje oraz czy znajduje się na boku trojkata, badanie warunku jest powtorzone
-     * dla prostych A1A3 i A2R oraz A2A3 i A1R, jesli wszystkie trzy warunki są spelnione oznacza to, ze robot znajduje sie w trojkącie wyznaczonym przez anteny i funkcja zwraca true
+     * dla prostych A1A3 i A2R oraz A2A3 i A1R, jesli wszystkie trzy warunki są spelnione oznacza to, ze robot znajduje sie w trojkącie wyznaczonym przez anteny i funkcja zwraca true.
      */
 
     private boolean finalInCheck(int[] A1, int[] A2, int[] A3) {//crosslineexc-te same proste, nocrosslineexc-rownolegle
@@ -359,8 +359,8 @@ class Robot {
      * @param antena1 antena dla ktorej bedzie przeprowadzone finalne sprawdzenie
      * @param antena2 jw.
      * @param antena3 jw.
-     * @return wynik logiczny finalnego sprawdzenia, w pierwszym kroku wykonywane jest sprawdzenie początkowe, jesli ono nie określi jednoznacznie czy robot jest w srodku
-     * przeprowadzone jest sprawdzenie funkcja finalInCheck()
+     * @return Funkcja zwraca wynik logiczny finalnego sprawdzenia, w pierwszym kroku wykonywane jest sprawdzenie początkowe, jesli ono nie określi jednoznacznie czy robot jest w srodku
+     * przeprowadzone jest sprawdzenie funkcja finalInCheck().
      */
     boolean inside(Antena antena1, Antena antena2, Antena antena3) {
 
