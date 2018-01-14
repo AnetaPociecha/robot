@@ -20,7 +20,7 @@ class Robot {
 
     /**
      *
-     * @param antena antena dla ktorej szukamy wzglednych wspolrzędnych (wzgledem polozenia robota)
+     * @param antena antena dla ktorej szukamy wzglednych wspolrzednych (wzgledem polozenia robota)
      * @return tablica [coordX,coordY] gdzie coordX,coordY - wzgledne wspolrzedne anteny
      */
     private int[] findSourceCoordinate(Antena antena) {
@@ -109,8 +109,8 @@ class Robot {
      * @param line1 tablica zawierajaca informacje o prostej w formacie [a,b,c] dla prostej cy=ax+b
      * @param line2 jw.
      * @return tablica [x,y] gdzie x,y - punkt przeciecia prostych line1 i line2
-     * @throws NoCrossLineException wyjatek wyrzucany w przypadku prostych rownoleglych - brak punktu przecięcia
-     * @throws CrossLineException wyjatek wyrzucany w przypadku gdy line1 i line2 są tymi samymi prostymi - nieskonczenie wiele punktow przeciecia
+     * @throws NoCrossLineException wyjatek wyrzucany w przypadku prostych rownoleglych - brak punktu przeciecia
+     * @throws CrossLineException wyjatek wyrzucany w przypadku gdy line1 i line2 sa tymi samymi prostymi - nieskonczenie wiele punktow przeciecia
      */
 
     private double[] findCrossPoint(double[] line1, double[] line2) throws NoCrossLineException, CrossLineException {
@@ -148,10 +148,11 @@ class Robot {
 
     /**
      *
-     * @param antena1 antena dla ktorej przeprowadzane jest poczatkowe sprawdzenie (sprawdzenie czy przy ruchu robota w prawo, lewo, gorę i doł sygnaly maleja czy rosna)
+     * @param antena1 antena dla ktorej przeprowadzane jest poczatkowe sprawdzenie (warunek sprawdzajacy czy przy ruchu robota w prawo, lewo, gore i dol
+     *                dwa sygnaly wzrosly i jeden zmalal lub dwa sygnaly zmalally i jeden wzrosl)
      * @param antena2 jw.
      * @param antena3 jw.
-     * @return wynik logiczny poczatkowego sprawdzenia
+     * @return wynik logiczny poczatkowego sprawdzenia - jezeli warunek jest spelniony conajmniej dla trzech kierunkow wynik dzialania wstepnego sprawdzenia mozna uznac za wiarygodny
      */
 
     private boolean firstInCheck(Antena antena1, Antena antena2, Antena antena3) {

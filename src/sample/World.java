@@ -16,6 +16,7 @@ class World{
     private final int gridWidth = width/scale;
     private final int gridHeight = height/scale;
 
+
     World() {
 
         int xR;
@@ -27,7 +28,7 @@ class World{
         int xA3;
         int yA3;
 
-        //dopuszcza możliwość że x1=x2, powtarza losowanie jeśli wylosowane punkty są takie same lub się częściowo pokrywają, mogą się stykać
+        //powtarza losowanie jeśli wylosowane punkty są takie same lub się częściowo pokrywają, mogą się stykać
         //losowaniu trzeciej anteny sprawdza czy nie jest ona współliniowa z resztą anten -> zawsze będziemy mieć trojkata
 
         xA1=getRandomizedLocation(gridWidth);
