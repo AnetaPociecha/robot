@@ -147,14 +147,14 @@ class Robot {
     }
 
     /**
-     *
-     * @param antena1 antena dla ktorej przeprowadzane jest poczatkowe sprawdzenie (warunek sprawdzajacy czy przy ruchu robota w prawo, lewo, gore i dol
-     *                dwa sygnaly wzrosly i jeden zmalal lub dwa sygnaly zmalally i jeden wzrosl)
+     * Warunek sprawdza czy przy ruchu robota w prawo, lewo, gore i dol dwa sygnaly wzrosly i jeden zmalal lub dwa sygnaly zmalally i jeden wzrosl,
+     * jezeli warunek jest spelniony co najmniej dla trzech kierunkow wynik dzialania wstepnego sprawdzenia mozna uznac za wiarygodny.
+
+     * @param antena1 antena dla ktorej przeprowadzane jest poczatkowe sprawdzenie
      * @param antena2 jw.
      * @param antena3 jw.
-     * @return Funkcja zwraca wynik logiczny poczatkowego sprawdzenia - jezeli warunek jest spelniony conajmniej dla trzech kierunkow wynik dzialania wstepnego sprawdzenia mozna uznac za wiarygodny.
-     */
-
+     * @return Funkcja zwraca wynik logiczny poczatkowego sprawdzenia.
+*/
     private boolean firstInCheck(Antena antena1, Antena antena2, Antena antena3) {
         double signal0Antena1, signalRightAntena1, signalLeftAntena1, signalForwardAntena1, signalBackAntena1;
         double signal0Antena2, signalRightAntena2, signalLeftAntena2, signalForwardAntena2, signalBackAntena2;
@@ -267,15 +267,14 @@ class Robot {
     }
 
     /**
-     *
+     * Sprawdzenie polega na
+     * utworzeniu prostych A1A2 oraz A3R i zbadaniu czy punkt ich przeciecia istnieje oraz czy znajduje sie na boku trojkata, badanie warunku jest powtorzone
+     * dla prostych A1A3 i A2R oraz A2A3 i A1R, jesli wszystkie trzy warunki sa spelnione oznacza to, ze robot znajduje sie w trojkacie wyznaczonym przez anteny i funkcja zwraca true.
      * @param A1 dwuelementowa tablica ze wspolrzednymi [x,y]
      * @param A2 jw.
      * @param A3 jw.
-     * @return Funkcja zwraca wynik logiczny sprawdzenia czy wspolrzedne robota znajduja sie wewnatrz punktow wyznaczonych przez A1,A2 i A3, sprawdzenie polega na
-     * utworzeniu prostych A1A2 oraz A3R i zbadaniu czy punkt ich przeciecia istnieje oraz czy znajduje sie na boku trojkata, badanie warunku jest powtorzone
-     * dla prostych A1A3 i A2R oraz A2A3 i A1R, jesli wszystkie trzy warunki sa spelnione oznacza to, ze robot znajduje sie w trojkacie wyznaczonym przez anteny i funkcja zwraca true.
-     */
-
+     * @return Funkcja zwraca wynik logiczny sprawdzenia czy wspolrzedne robota znajduja sie wewnatrz punktow wyznaczonych przez A1,A2 i A3.
+*/
     private boolean finalInCheck(int[] A1, int[] A2, int[] A3) {//crosslineexc-te same proste, nocrosslineexc-rownolegle
         int xA1 = A1[0];
         int yA1 = A1[1];
@@ -355,12 +354,12 @@ class Robot {
 
 
     /**
-     *
+     * W pierwszym kroku wykonywane jest sprawdzenie poczatkowe, jesli ono nie okresli jednoznacznie czy robot jest w srodku
+     * przeprowadzone jest sprawdzenie funkcja finalInCheck().
      * @param antena1 antena dla ktorej bedzie przeprowadzone finalne sprawdzenie
      * @param antena2 jw.
      * @param antena3 jw.
-     * @return Funkcja zwraca wynik logiczny finalnego sprawdzenia, w pierwszym kroku wykonywane jest sprawdzenie poczatkowe, jesli ono nie określi jednoznacznie czy robot jest w srodku
-     * przeprowadzone jest sprawdzenie funkcja finalInCheck().
+     * @return Funkcja zwraca wynik logiczny finalnego sprawdzenia.
      */
     boolean inside(Antena antena1, Antena antena2, Antena antena3) {
 
