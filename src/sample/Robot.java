@@ -340,7 +340,7 @@ class Robot {
         yC = crossPointA2A3R[1];
         boolean checkX3=false,checkY3=false;
         if(xA3<=xA2) {
-            if(xC>=xA3&&xC<=xA2) checkX3=true; //kiedy rowne-> robot jest na linii, traktujemy jako w srodku?
+            if(xC>=xA3&&xC<=xA2) checkX3=true;
         }else {
             if(xC>=xA2&&xC<=xA3) checkX3=true;
         }
